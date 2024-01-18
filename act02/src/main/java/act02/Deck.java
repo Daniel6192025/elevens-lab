@@ -18,7 +18,7 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	private List<Card> cards;
+	private final List<Card> cards;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -42,16 +42,35 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
     // Implemented in Activity 02
-  }
+      cards= new ArrayList<Card>();
+    for (int j=0; j<ranks.length; j++){
+        for(String suitString: suits){
+            cards.add(new Card(ranks[j], suitString, values[j]));
 
+        }
+    }
+    size=cards.size();
+    shuffle();
+
+    shuffle();
+
+
+        
+
+}
 
 	/**
 	 * Determines if this deck is empty (no undealt cards).
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-    // Implemented in Activity 02  
+            // Implemented in Activity 02
+            if (size == 0) {
+            return true;
+            }
+            return false;
   }
+
 
 	/**
 	 * Accesses the number of undealt cards in this deck.
@@ -59,6 +78,8 @@ public class Deck {
 	 */
 	public int size() {
     // Implemented in Activity 02
+    size = cards.size();
+    return size;
 	}
 
 	/**
@@ -70,8 +91,14 @@ public class Deck {
 	 */
 	public Card deal() {
     // Implemented in Activity 02
+    if (isEmpty()== true) {
+            Card dealtCard = cards.get(0);
+            cards.remove(0);
+            return dealtCard;
+    }
+    return null;
   }
-
+        
 	/**
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
