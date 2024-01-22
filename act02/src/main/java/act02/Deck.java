@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * It provides several operations including
  *      initialize, shuffle, deal, and check if empty.
  */
-public class Deck {
+public final class Deck {
 
 	/**
 	 * cards contains all the cards in the deck.
@@ -42,21 +42,16 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
     // Implemented in Activity 02
-      cards= new ArrayList<Card>();
-    for (int j=0; j<ranks.length; j++){
-        for(String suitString: suits){
-            cards.add(new Card(ranks[j], suitString, values[j]));
+            cards= new ArrayList<>();
+            for (int j=0; j<ranks.length; j++){
+                for(String suitString: suits){
+                    cards.add(new Card(ranks[j], suitString, values[j]));
 
         }
     }
-    size=cards.size();
-    shuffle();
-
-    shuffle();
-
-
+        size=cards.size();
+       shuffle();
         
-
 }
 
 	/**
@@ -65,10 +60,8 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
             // Implemented in Activity 02
-            if (size == 0) {
-            return true;
-            }
-            return false;
+            
+            return size == 0;
   }
 
 
@@ -92,11 +85,11 @@ public class Deck {
 	public Card deal() {
     // Implemented in Activity 02
     if (isEmpty()== true) {
-            Card dealtCard = cards.get(0);
-            cards.remove(0);
-            return dealtCard;
+            return null;
     }
-    return null;
+    size--;
+    Card cool = cards.get(size);
+    return cool;
   }
         
 	/**
